@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colorful Calculator</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="calc-container">
+    <h2>Calculator</h2>
+
+    <form onsubmit="cal(event)">
+      <label for="a">First Number</label>
+      <input type="number" id="a" placeholder="Enter first number" required>
+
+      <label for="b">Second Number</label>
+      <input type="number" id="b" placeholder="Enter second number" required>
+
+      <label for="sym">Operation</label>
+      <select id="sym" required>
+        <option value="">-- Choose Operation --</option>
+        <option value="+">Addition (+)</option>
+        <option value="-">Subtraction (-)</option>
+        <option value="*">Multiplication (×)</option>
+        <option value="/">Division (÷)</option>
+      </select>
+      
+      <button type="submit">Calculate</button>
+    </form>
+    
+    <div class="result" id="result">Result will appear here</div>
+  </div>
+
+  <script>
+    function cal(e) {
+      e.preventDefault();
+      let num1 = Number(document.getElementById("a").value);
+      let num2 = Number(document.getElementById("b").value);
+      let symbols = document.getElementById("sym").value;
+      let res = "";
+
+      if (symbols === "+") {
+        res = num1 + num2;
+      } else if (symbols === "-") {
+        res = num1 - num2;
+      } else if (symbols === "*") {
+        res = num1 * num2;
+      } else if (symbols === "/") {
+        res = num2 !== 0 ? (num1 / num2) : "❌ Cannot divide by zero!";
+      }
+
+      document.getElementById("result").innerText = "Result: " + res;
+    }
+  </script>
+</body>
+</html>
